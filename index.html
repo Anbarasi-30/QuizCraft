@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#f7f7ff" />
+  <title>QuizCraft — Learn by challenging yourself</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#" data-page="dashboard" aria-label="QuizCraft home">
+        <span class="brand-mark"><i data-lucide="layers"></i></span>
+        <span>quiz<span class="brand-accent">craft</span><small>LEARN. PRACTICE. GROW.</small></span>
+      </a>
+      <div class="nav-label">WORKSPACE</div>
+      <nav class="main-nav" aria-label="Main navigation">
+        <button class="nav-item active" data-page="dashboard"><i data-lucide="layout-dashboard"></i> Dashboard</button>
+        <button class="nav-item" data-page="explore"><i data-lucide="compass"></i> Explore quizzes</button>
+        <button class="nav-item" data-page="myquizzes"><i data-lucide="book-open-check"></i> My quizzes</button>
+        <button class="nav-item" data-page="history"><i data-lucide="chart-no-axes-column"></i> My results</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="sidebar-promo">
+          <div class="promo-icon"><i data-lucide="sparkles"></i></div>
+          <strong>Small steps, big progress.</strong>
+          <p>Every question is a chance to get better.</p>
+          <button class="text-button" data-page="explore">Find your next quiz <i data-lucide="arrow-up-right"></i></button>
+        </div>
+        <div class="profile-row">
+          <div class="avatar">Q</div>
+          <div class="profile-copy"><strong>Quiz learner</strong><span>Your learning space</span></div>
+          <i data-lucide="chevron-down" class="muted-icon"></i>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <button class="icon-button mobile-menu" id="menuToggle" aria-label="Toggle menu"><i data-lucide="menu"></i></button>
+        <div class="breadcrumb"><span>Workspace</span><i data-lucide="chevron-right"></i><strong id="breadcrumbCurrent">Dashboard</strong></div>
+        <div class="topbar-actions">
+          <span class="date-chip"><i data-lucide="calendar-days"></i><span id="todayLabel"></span></span>
+          <button class="icon-button" id="helpButton" title="About QuizCraft" aria-label="About QuizCraft"><i data-lucide="circle-help"></i></button>
+          <button class="primary-button small" data-action="create"><i data-lucide="plus"></i> Create quiz</button>
+        </div>
+      </header>
+
+      <section id="pageRoot" class="page-root" aria-live="polite"></section>
+    </main>
+  </div>
+
+  <div class="modal-backdrop hidden" id="modalBackdrop">
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-header"><div><span class="eyebrow">YOUR NEXT CHALLENGE</span><h2 id="modalTitle">Create a quiz</h2></div><button class="icon-button" id="closeModal" aria-label="Close dialog"><i data-lucide="x"></i></button></div>
+      <form id="quizForm">
+        <div class="form-grid">
+          <label class="field full">Quiz title<input id="quizTitle" required maxlength="70" placeholder="e.g. JavaScript essentials"></label>
+          <label class="field">Topic
+            <select id="quizTopic" required>
+              <option value="HTML">HTML</option><option value="CSS">CSS</option><option value="JavaScript">JavaScript</option><option value="Python">Python</option><option value="Web Development">Web Development</option><option value="General Knowledge">General Knowledge</option><option value="Other">Other</option>
+            </select>
+          </label>
+          <label class="field">Time limit
+            <select id="quizTime"><option value="3">3 minutes</option><option value="5" selected>5 minutes</option><option value="10">10 minutes</option><option value="15">15 minutes</option><option value="20">20 minutes</option></select>
+          </label>
+          <label class="field full">Short description<input id="quizDescription" maxlength="140" placeholder="What will learners practice?"></label>
+        </div>
+        <div class="question-builder-heading"><div><h3>Questions</h3><p>Add at least one multiple-choice question.</p></div><span class="count-pill" id="questionCount">1 question</span></div>
+        <div id="questionBuilder" class="question-builder"></div>
+        <button type="button" class="secondary-button add-question" id="addQuestion"><i data-lucide="plus"></i> Add another question</button>
+        <div class="modal-footer"><button type="button" class="secondary-button" id="cancelModal">Cancel</button><button type="submit" class="primary-button"><i data-lucide="check"></i> Save quiz</button></div>
+      </form>
+    </section>
+  </div>
+
+  <div class="toast-region" id="toastRegion" aria-live="polite"></div>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="script.js"></script>
+</body>
+</html>
